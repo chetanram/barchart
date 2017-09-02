@@ -1,11 +1,14 @@
 package com.barchart;
 
+import android.content.res.Configuration;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
@@ -17,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
         ll_x_axis = (LinearLayout) findViewById(R.id.ll_x_axis);
         ll_y_axis = (LinearLayout) findViewById(R.id.ll_y_axis);
@@ -37,8 +41,15 @@ public class MainActivity extends AppCompatActivity {
         }
         GraphViewX graphViewX = new GraphViewX(this, list_statistics);
         GraphViewY graphViewY = new GraphViewY(this, list_statistics);
-        int width = (int) (graphViewX.iteration * Common.convertDpToPixel(graphViewX.iteration + 11, MainActivity.this));
-        graphViewX.setLayoutParams(new LinearLayout.LayoutParams(width, LinearLayout.LayoutParams.MATCH_PARENT));
+        float deviceWidth = Common.getDeviceWidth(MainActivity.this);
+
+        int width = (int) (graphViewX.iteration * Common.convertDpToPixel(graphViewX.iteration + 5, MainActivity.this));
+        if (width < deviceWidth) {
+            graphViewX.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
+
+        } else {
+            graphViewX.setLayoutParams(new LinearLayout.LayoutParams(width, LinearLayout.LayoutParams.MATCH_PARENT));
+        }
         ll_x_axis.addView(graphViewX);
         ll_y_axis.addView(graphViewY);
     }

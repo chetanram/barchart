@@ -30,6 +30,7 @@ public class GraphViewX extends View {
         super(context);
         this.context = context;
         this.list_statistics = list_statistics;
+
         retangles = new ArrayList<>();
         for (int i = 0; i < list_statistics.size(); i++) {
             float value = Float.parseFloat(list_statistics.get(i).getAmount());
@@ -87,14 +88,8 @@ public class GraphViewX extends View {
         float colwidthDate = context.getResources().getDimension(R.dimen.dp_40);
         for (int i = 0; i < list_statistics.size(); i++) {
             paint.setColor(Color.DKGRAY);
-//            float x = ((graphwidth / hors) * i);
             float x = (colwidthDate * i) + context.getResources().getDimension(R.dimen.dp_20);
-//            canvas.drawLine(x, height - border, x, border, paint);
             paint.setTextAlign(Align.CENTER);
-//            if (i == horlabels.length - 1)
-//                paint.setTextAlign(Align.RIGHT);
-//            if (i == 0)
-//                paint.setTextAlign(Align.LEFT);
             paint.setColor(Color.BLACK);
             canvas.drawText(list_statistics.get(i).getDate(), x, height - context.getResources().getDimension(R.dimen.dp_10), paint);
         }
@@ -106,7 +101,6 @@ public class GraphViewX extends View {
         if (max != min) {
             paint.setColor(Color.RED);
             float datalength = list_statistics.size();
-//            float colwidth = (width - (2 * border)) / datalength;
             float colwidth = context.getResources().getDimension(R.dimen.dp_40);
             for (int i = 0; i < list_statistics.size(); i++) {
                 float val = Float.parseFloat(list_statistics.get(i).getAmount()) - min;
@@ -129,18 +123,10 @@ public class GraphViewX extends View {
         paint.setTextAlign(Align.CENTER);
         for (int i = 0; i < list_statistics.size(); i++) {
 
-//            float x = ((graphwidth / hors) * i);
             float x = (colwidthDate * i) + left;
             float val = Float.parseFloat(list_statistics.get(i).getAmount()) - min;
             float rat = val / diff;
             float h = graphheight * rat;
-//            canvas.drawLine(x, height - border, x, border, paint);
-//            paint.setTextAlign(Align.CENTER);
-//            if (i == horlabels.length - 1)
-//                paint.setTextAlign(Align.RIGHT);
-//            if (i == 0)
-//                paint.setTextAlign(Align.LEFT);
-
             canvas.drawText(list_statistics.get(i).getAmount(), x, (border - h) + graphheight + top, paint);
         }
     }
@@ -163,6 +149,10 @@ public class GraphViewX extends View {
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 System.out.println("Touching down!");
+
+                break;
+            case MotionEvent.ACTION_UP:
+                System.out.println("Touching up!");
                 for (Data data : retangles) {
                     if (data.rectF.contains(touchX, touchY)) {
 //                        System.out.println("Touched Rectangle, start activity.");
@@ -172,9 +162,6 @@ public class GraphViewX extends View {
 
                     }
                 }
-                break;
-            case MotionEvent.ACTION_UP:
-                System.out.println("Touching up!");
                 break;
             case MotionEvent.ACTION_MOVE:
                 System.out.println("Sliding your finger around on the screen.");

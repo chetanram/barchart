@@ -69,43 +69,13 @@ public class GraphViewY extends View {
                 paint.setColor(Color.DKGRAY);
             }
             float y = ((graphheight / vers) * i) + border;
-//            canvas.drawLine(horstart, y, width, y, paint);
             paint.setColor(Color.BLACK);
-//            canvas.drawText(verlabels[i], 0, y, paint);
             paint.setColor(Color.DKGRAY);
             if (((newPower * i) / 10) % newPower == 0) {
                 canvas.drawText(String.valueOf(slotDisplay - (newPower * i / 10)), context.getResources().getDimension(R.dimen.dp_3), y + context.getResources().getDimension(R.dimen.dp_5), paint);
             }
         }
-       /* int hors = list_statistics.size() - 1;
-        for (int i = 0; i < list_statistics.size(); i++) {
-            paint.setColor(Color.DKGRAY);
-            float x = ((graphwidth / hors) * i) + horstart;
-//            canvas.drawLine(x, height - border, x, border, paint);
-            paint.setTextAlign(Align.CENTER);
-//            if (i == horlabels.length - 1)
-//                paint.setTextAlign(Align.RIGHT);
-//            if (i == 0)
-//                paint.setTextAlign(Align.LEFT);
-            paint.setColor(Color.BLACK);
-//            canvas.drawText(list_statistics.get(i).getDate(), x, height - 4, paint);
-        }
 
-        paint.setTextAlign(Align.CENTER);
-//        canvas.drawText(title, (graphwidth / 2) + horstart, border - 4, paint);
-
-        if (max != min) {
-            paint.setColor(Color.LTGRAY);
-            float datalength = list_statistics.size();
-            float colwidth = (width - (2 * border)) / datalength;
-            for (int i = 0; i < list_statistics.size(); i++) {
-                float val = Float.parseFloat(list_statistics.get(i).getAmount()) - min;
-                float rat = val / diff;
-                float h = graphheight * rat;
-//                canvas.drawRect((i * colwidth) + horstart, (border - h) + graphheight, ((i * colwidth) + horstart) + (colwidth - 1), height - (border - 1), paint);
-            }
-
-        }*/
     }
 
     private float getMax() {

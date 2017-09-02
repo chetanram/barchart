@@ -4,11 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layoutDirection="ltr"
     tools:context="com.barchart.MainActivity">
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_weight="1">
 
         <LinearLayout
             android:id="@+id/ll_y_axis"
@@ -22,8 +25,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="50dp"
-            android:scrollbars="none"
-            android:fillViewport="true">
+            android:fillViewport="true"
+            android:scrollbars="none">
 
             <LinearLayout
                 android:id="@+id/ll_x_axis"
@@ -34,4 +37,10 @@
                 android:orientation="horizontal"></LinearLayout>
         </HorizontalScrollView>
     </FrameLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:text="Click" />
 </LinearLayout>
